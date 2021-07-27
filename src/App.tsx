@@ -1,14 +1,36 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { ACCOUNTS_PARTNER, ENV } from './settings';
 
 function App() {
+
+  const getAccountsToken = (isRegister?: boolean): any => {
+    const params = {
+      logo: 'https://cdn.eduzzcdn.com/mercurius/upload/e3/77/e377d9b56510471abff281c4988e2cc6',
+      env: ENV !== 'production' ? 'homolog' : ENV,
+      register: 'false'
+    };
+  
+    if (isRegister) {
+      params.register = 'true';
+    }
+
+    console.log('Chamando accounts', ACCOUNTS_PARTNER);
+  
+    return window.Eduzz.Accounts.login(ACCOUNTS_PARTNER, params);
+  };
+
+  useEffect(() => {
+    getAccountsToken();
+  });
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.tsx</code> and save to reload.
+          Awesome, you're in buddy!
         </p>
         <a
           className="App-link"
