@@ -16,9 +16,9 @@ function App() {
       params.register = 'true';
     }
 
-    console.log('Chamando accounts', ACCOUNTS_PARTNER);
+    console.log('Chamando accounts', ENV);
   
-    return window.Eduzz.Accounts.login(ACCOUNTS_PARTNER, params);
+    window.Eduzz.Accounts.login(ACCOUNTS_PARTNER, params).subscribe((res: any) => console.log(res));
   };
 
   useEffect(() => {
