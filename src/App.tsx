@@ -11,12 +11,8 @@ function App() {
     const params = {
       logo: 'https://cdn.eduzzcdn.com/mercurius/upload/e3/77/e377d9b56510471abff281c4988e2cc6',
       env: ENV !== 'production' ? 'homolog' : ENV,
-      register: 'false'
+      register: isRegister ? 'true' : 'false'
     };
-  
-    if (isRegister) {
-      params.register = 'true';
-    }
   
     window.Eduzz.Accounts.login(ACCOUNTS_PARTNER, params).subscribe((accountsToken: string) => setAuthentication(accountsToken));
   };
