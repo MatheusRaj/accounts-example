@@ -1,9 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { ACCOUNTS_PARTNER, ENV } from './settings';
 
 function App() {
+
+  const [isAuthenticated, setAuthentication] = useState<string>('');
 
   const getAccountsToken = (isRegister?: boolean): any => {
     const params = {
@@ -15,10 +17,8 @@ function App() {
     if (isRegister) {
       params.register = 'true';
     }
-
-    console.log('Chamando accounts', ENV);
   
-    window.Eduzz.Accounts.login(ACCOUNTS_PARTNER, params).subscribe((res: any) => console.log(res));
+    window.Eduzz.Accounts.login(ACCOUNTS_PARTNER, params).subscribe((accountsToken: string) => setAuthentication(accountsToken));
   };
 
   useEffect(() => {
@@ -29,9 +29,14 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Awesome, you're in buddy!
-        </p>
+        {!!isAuthenticated ? 
+          <p>
+            Awesome, you're in buddy!
+          </p> : 
+          <p>
+            You need to sign in bro!
+          </p>}
+        
         <a
           className="App-link"
           href="https://reactjs.org"
