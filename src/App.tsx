@@ -7,7 +7,7 @@ function App() {
 
   const [isAuthenticated, setAuthentication] = useState<string>('');
 
-  const getAccountsToken = (isRegister?: boolean): any => {
+  const getAccountsToken = (isRegister?: boolean): void => {
     const params = {
       logo: 'https://cdn.eduzzcdn.com/mercurius/upload/e3/77/e377d9b56510471abff281c4988e2cc6',
       env: ENV !== 'production' ? 'homolog' : ENV,
